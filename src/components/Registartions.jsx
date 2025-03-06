@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { io } from "socket.io-client";
-import { FaUsers, FaTrophy, FaStopwatch } from "react-icons/fa";
+import { FaUsers, FaTrophy, FaStopwatch,FaTrash } from "react-icons/fa";
 const BACK_URL = import.meta.env.VITE_BACK_URL
 const socket = io(BACK_URL);
 
@@ -20,9 +20,28 @@ const Registrations = () => {
     };
 }, []);
 
+const handleDeleteAll = async () => {
+  const confirmed = window.confirm("Are you sure you want to delete all records?");
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch(`${BACK_URL}/team/delete-all-teams`, { method: "DELETE" });
+
+    if (response.ok) {
+      alert("All records deleted successfully.");
+      setTeams([]); // Notify backend to update all clients
+    } else {
+      alert("Error deleting records.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Failed to delete records.");
+  }
+};
+
 
   return (
-    <div className="w-full max-w-6xl max-h-[700px] overflow-y-scroll bg-gradient-to-b from-[#0A192F] to-[#112240]  p-6">
+    <div className="w-full h-full overflow-y-scroll bg-gradient-to-b from-[#0A192F] to-[#112240]  p-6">
       <h2 className="text-3xl font-bold mb-6 text-white text-center tracking-wider">
         📋 <span className="text-blue-400 drop-shadow-lg">Registrations</span>
       </h2>
@@ -37,6 +56,12 @@ const Registrations = () => {
 
       <div className="overflow-x-auto">
 
+      <button
+        onClick={handleDeleteAll}
+        className="bg-red-600 mb-7 cursor-pointer font-bold text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 flex items-center gap-2 ms-auto me-auto"
+      >
+        <FaTrash /> Delete All Records
+      </button>
 
         <table className="w-full border-collapse border border-gray-600">
   <thead>

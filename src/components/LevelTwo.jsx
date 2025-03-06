@@ -109,7 +109,7 @@ const LevelTwo = ({ }) => {
     
 
     return (
-        <div className="w-full max-h-[700px] overflow-y-scroll min-h-screen bg-gradient-to-b from-[#0A192F] to-[#112240] p-6 flex flex-col items-center">
+        <div className="w-full overflow-y-scroll min-h-screen bg-gradient-to-b from-[#0A192F] to-[#112240] p-6 flex flex-col items-center">
             <h2 className="text-4xl font-bold text-white mb-2 tracking-wide">
                 🚀 <span className="text-blue-400">Level Two Dashboard</span>
             </h2>
@@ -188,7 +188,7 @@ const LevelTwo = ({ }) => {
 
 
             {/* Table */}
-            <div className="w-full max-w-6xl mt-8">
+            <div className="w-full  mt-8">
                 <h2 className="text-2xl text-center font-semibold text-white mb-4">📋 Level Two Submissions</h2>
                 <table className="w-full border-collapse border border-gray-700 text-white">
                     <thead>
