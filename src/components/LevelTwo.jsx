@@ -24,7 +24,7 @@ const LevelTwo = ({ }) => {
 
     console.log(cardCounts);
 
-    
+
 
     const handleReveal = (cardIndex) => {
         const statement = statements[cardIndex]; // Get the corresponding statement
@@ -47,7 +47,7 @@ const LevelTwo = ({ }) => {
             setFinishTime(finishTime)
         });
 
-   
+
 
         const fetchStats = () => {
             fetch(`${BACK_URL}/team/getStats`)
@@ -57,7 +57,7 @@ const LevelTwo = ({ }) => {
                 })
                 .catch(err => console.error("Error fetching admin stats:", err));
         };
-    
+
         fetchStats(); // Initial fetch
 
         // Listen for real-time updates
@@ -85,16 +85,16 @@ const LevelTwo = ({ }) => {
     const [level2Started, setLevel2Started] = useState(false);
 
     const toggleLevel2 = () => {
-      const newState = !level2Started;
-      setLevel2Started(newState);
-      socket.emit("toggle_level2", newState);
+        const newState = !level2Started;
+        setLevel2Started(newState);
+        socket.emit("toggle_level2", newState);
     };
-    
+
     console.log("finishTime", finishTime)
 
     const handleStartLevel = () => {
         const now = new Date();
-        
+
         // Convert to 12-hour format with AM/PM
         const formattedTime = now.toLocaleString('en-US', {
             hour: 'numeric',
@@ -102,11 +102,11 @@ const LevelTwo = ({ }) => {
             second: 'numeric',
             hour12: true
         });
-    
+
         socket.emit("start_level", { startTime: formattedTime }); // Send to backend
     };
-    
-    
+
+
 
     return (
         <div className="w-full overflow-y-scroll min-h-screen bg-gradient-to-b from-[#0A192F] to-[#112240] p-6 flex flex-col items-center">
@@ -143,26 +143,26 @@ const LevelTwo = ({ }) => {
             </div>
 
             <div className="flex justify-between items-center gap-20">
-            <button onClick={toggleLevel2}  className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
+                <button onClick={toggleLevel2} className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
                 hover:bg-green-600 transition-all transform hover:scale-105 duration-300">
-                {level2Started ? "Display Off" : "Display On"}
-            </button>
+                    {level2Started ? "Display Off" : "Display On"}
+                </button>
 
-            <button onClick={handleResetReveal}  className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
+                <button onClick={handleResetReveal} className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
                 hover:bg-green-600 transition-all transform hover:scale-105 duration-300">
-                Reset Revealed Card
-            </button>
+                    Reset Revealed Card
+                </button>
 
-            <button
-                onClick={handleStartLevel}
-                className="cursor-pointer mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
+                <button
+                    onClick={handleStartLevel}
+                    className="cursor-pointer mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
                 hover:bg-green-600 transition-all transform hover:scale-105 duration-300"
-            >
-                Start The Level
-            </button>
+                >
+                    Start The Level
+                </button>
             </div>
 
-            
+
 
 
             {/* Stats Cards */}
@@ -199,6 +199,7 @@ const LevelTwo = ({ }) => {
                             <th className="border border-gray-600 p-3">Registration ID</th>
                             <th className="border border-gray-600 p-3">Start Time</th>
                             <th className="border border-gray-600 p-3">Completion Time</th>
+                            <th className="border border-gray-600 p-3">Uploaded File</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -219,6 +220,23 @@ const LevelTwo = ({ }) => {
                                     {memberIndex === 0 && (
                                         <td rowSpan={team.members.length} className="border border-gray-600 p-3">{team.finishTime}</td>
                                     )}
+                                    {memberIndex === 0 && (
+                                             <td rowSpan={team.members.length}  className="border border-gray-600 p-3">
+                                             {team.levelTwoFile ? (
+                                                 <a
+                                                     href={team.levelTwoFile}
+                                                     target="_blank"
+                                                     rel="noopener noreferrer"
+                                                     className="text-blue-400 underline"
+                                                 >
+                                                     Open File
+                                                 </a>
+                                             ) : (
+                                                 "No file uploaded"
+                                             )}
+                                         </td>
+                                    )}
+                               
                                 </tr>
                             ))
                         )}
