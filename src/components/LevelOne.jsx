@@ -68,12 +68,12 @@ const LevelOne = () => {
       </div>
 
       {/* Start Button */}
-      <button
+      {/* <button
         className="mt-8 bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md cursor-pointer
         hover:bg-green-600 transition-all transform hover:scale-105 duration-300"
       >
         Start
-      </button>
+      </button> */}
     </div>
   );
 };

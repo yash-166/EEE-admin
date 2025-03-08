@@ -425,10 +425,10 @@ const LevelTwo = ({ }) => {
                     {level2Started ? "Display Off" : "Display On"}
                 </button>
 
-                <button onClick={handleResetReveal} className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
-                hover:bg-green-600 transition-all transform hover:scale-105 duration-300">
-                    Reset Revealed Card
-                </button>
+                {/* <button onClick={handleResetReveal} className="cursor-pointer reset-button mt-8 font-semibold bg-green-500 text-white text-lg px-6 py-3 rounded-lg shadow-md 
+                // hover:bg-green-600 transition-all transform hover:scale-105 duration-300">
+                     Reset Revealed Card
+                </button> */}
 
                 <button
                     onClick={handleStartLevel}
