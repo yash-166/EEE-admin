@@ -324,7 +324,7 @@ const LevelTwo = ({ }) => {
             setFinishTime(finishTime)
         });
 
-
+        console.log("from admin:",secondLevelTeams);
 
         const fetchStats = () => {
             fetch(`${BACK_URL}/team/getStats`)
@@ -357,7 +357,7 @@ const LevelTwo = ({ }) => {
             socket.off("update_secondlevel");
             socket.off("update_click_counts");
         };
-    }, []);
+    }, [teams]);
 
     const [level2Started, setLevel2Started] = useState(false);
 
